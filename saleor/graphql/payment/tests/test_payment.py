@@ -611,13 +611,6 @@ def test_payments_query(
                             amount
                         }
                     }
-                    creditCard {
-                        expMonth
-                        expYear
-                        brand
-                        firstDigits
-                        lastDigits
-                    }
                 }
             }
         }
@@ -657,13 +650,6 @@ def test_payments_query(
     assert data["transactions"] == [
         {"amount": {"currency": pay.currency, "amount": float(str(txn.amount))}}
     ]
-    assert data["creditCard"] == {
-        "expMonth": pay.cc_exp_month,
-        "expYear": pay.cc_exp_year,
-        "brand": pay.cc_brand,
-        "firstDigits": pay.cc_first_digits,
-        "lastDigits": pay.cc_last_digits,
-    }
 
 
 def test_query_payment(payment_dummy, user_api_client, permission_manage_orders):
